@@ -71,3 +71,25 @@ export const Container = styled.div`
     background-color: transparent;
   }
 `;
+
+export const AddButton = styled.div`
+  width: 56px;
+  height: 56px;
+
+  background-color: #2CC3D5;
+  border-radius: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  bottom: 100px;
+  right: 100px;
+
+  cursor: pointer;
+
+  :hover {
+    background-color: #218F9C;
+  }
+`;

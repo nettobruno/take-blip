@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { SquaresFour, Rows } from 'phosphor-react';
+import { SquaresFour, Rows, Plus } from 'phosphor-react';
 import Header from '../../components/Header';
-import { Container } from './style';
+import { Container, AddButton } from './style';
 
 export default function Home() {
   const [typeInfoExibition, setTypeInfoExibition] = useState('grid');
@@ -33,6 +33,10 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        <AddButton>
+          <Plus size={20} color="#F8FBFB" />
+        </AddButton>
       </Container>  
    </>
   );
