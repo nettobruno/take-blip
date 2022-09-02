@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface Props {
+  size: number;
+}
+
 export const Container = styled.div`
   max-width: 1600px;
   width: 100%;
@@ -70,6 +74,106 @@ export const Container = styled.div`
     cursor: pointer;
     background-color: transparent;
   }
+`;
+
+export const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 20px;
+
+  margin-top: 50px;
+
+  a {
+    background-color: #ffffff;
+    box-shadow: 0px 2px 12px rgba(96, 123, 153, 0.15);
+    border-radius: 7px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    text-decoration: none;
+
+    transition: all 0.3s;
+  }
+
+  a h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #52636C;
+
+    margin-top: 20px;
+  }
+
+  a h3 {
+    font-size: 12px;
+    font-weight: 400;
+    color: #738192;
+  }
+
+  a:hover {
+    transform: scale(1.1);
+  }
+`;
+
+export const List = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+
+  margin-top: 50px;
+
+  a {
+    background-color: #ffffff;
+    box-shadow: 0px 2px 12px rgba(96, 123, 153, 0.15);
+    border-radius: 7px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 50px;
+
+    text-decoration: none;
+
+    transition: all 0.3s;
+  }
+
+  a > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  a h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #52636C;
+
+    margin-left: 10px;
+  }
+
+  a h3 {
+    font-size: 12px;
+    font-weight: 400;
+    color: #738192;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-decoration-color: #738192;
+  }
+`;
+
+export const Circle = styled.div<Props>`
+  width: ${(props) => props.size}px;
+  height: ${(props) => props.size}px;
+
+  background-color: #2CC3D5;
+  border-radius: 100%;
 `;
 
 export const AddButton = styled.div`

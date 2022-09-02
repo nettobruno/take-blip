@@ -16,4 +16,8 @@ export default createGlobalStyle`
     scroll-behavior: smooth;
     overflow-x: hidden;
   }
+
+  body {
+    background-color: #E5E5E5;
+  }
 `;
