@@ -13,7 +13,9 @@ interface ItemsData {
 
 export default function Home() {
   const [typeInfoExibition, setTypeInfoExibition] = useState('grid');
-  const [profiles, setProfiles] = useState<ItemsData[]>([]);
+  const [profiles, setProfiles] = useState<ItemsData[]>([]);  
+  const [search, setSearch] = useState('')
+
 
   async function getItems() {
     await api.get('bots').then((response) => {
@@ -25,6 +27,10 @@ export default function Home() {
     getItems();
   }, []);
 
+  const filtered = search.length > 0
+    ? profiles.filter(profile => profile.name.includes(search))
+    : []
+
   return (
    <>
       <Header />
@@ -35,8 +41,13 @@ export default function Home() {
 
           <div className='actions'>
             <form action="">
-              <input type="search" name="search" id="search" placeholder="search" />
-
+              <input
+                type='text'
+                name='search'
+                placeholder='Buscar...'
+                onChange={e => setSearch(e.target.value)}
+                value={search} 
+              />
               <button>Order by name</button>
               <button>Order by creation</button>
             </form>
@@ -59,7 +70,18 @@ export default function Home() {
 
         {typeInfoExibition === 'grid' && (
           <Grid>
-            {profiles?.map((profile) => (
+            {search.length > 0 ? (
+                filtered.map(filter => {
+                  return (
+                    <Link to={`/profile?name=${filter.name}`}>
+                    <Circle size={56} />
+                    <h2>{filter.name}</h2>
+                    <h3>{filter.type}</h3>
+                  </Link>
+                  )
+                })
+            ) :
+            profiles?.map((profile) => (
               <Link to={`/profile?name=${profile.name}`}>
                 <Circle size={56} />
                 <h2>{profile.name}</h2>
@@ -71,7 +93,20 @@ export default function Home() {
 
         {typeInfoExibition === 'list' && (
           <List>
-            {profiles?.map((profile) => (
+            {search.length > 0 ? (
+                filtered.map(filter => {
+                  return (
+                    <Link to={`/profile?name=${filter.name}`}>
+                    <div>
+                      <Circle size={28} />
+                      <h2>{filter.name}</h2>
+                    </div>
+                    <h3>{filter.created}</h3>
+                  </Link>
+                  )
+                })
+            ) : 
+            profiles?.map((profile) => (
               <Link to={`/profile?name=${profile.name}`}>
                 <div>
                   <Circle size={28} />
