@@ -89,37 +89,37 @@ export default function Home() {
 
         {typeInfoExibition === 'grid' && (
           <Grid>
-            {filterDate.length > 0 || filterName.length > 0 || search.length > 0 ? '' : profiles.map((profile) => (
-              <Link to={`/profile?name=${profile.name}`}>
+            {filterDate.length > 0 || filterName.length > 0 || search.length > 0 ? '' : profiles.map(({ name, type }) => (
+              <Link to={`/profile`} state={{ name: name }}>
                 <Circle size={56} />
-                <h2>{profile.name}</h2>
-                <h3>{profile.type}</h3>
+                <h2>{name}</h2>
+                <h3>{type}</h3>
               </Link>
             ))}
 
-            {filterDate && search.length <= 0 ? filterDate.map((profile) => (
-              <Link to={`/profile?name=${profile.name}`}>
+            {filterDate && search.length <= 0 ? filterDate.map(({ name, type }) => (
+              <Link to={`/profile`} state={{ name: name }}>
                 <Circle size={56} />
-                <h2>{profile.name}</h2>
-                <h3>{profile.type}</h3>
+                <h2>{name}</h2>
+                <h3>{type}</h3>
               </Link>
             )) : ''}
 
-            {filterName && search.length <= 0 ? filterName.map((profile) => (
-              <Link to={`/profile?name=${profile.name}`}>
+            {filterName && search.length <= 0 ? filterName.map(({ name, type }) => (
+              <Link to={`/profile`} state={{ name: name }}>
                 <Circle size={56} />
-                <h2>{profile.name}</h2>
-                <h3>{profile.type}</h3>
+                <h2>{name}</h2>
+                <h3>{type}</h3>
               </Link>
             )) : ''}
 
             {search.length > 0 ? (
-                filtered.map(filter => {
+                filtered.map(({ name, type }) => {
                   return (
-                    <Link to={`/profile?name=${filter.name}`}>
+                    <Link to={`/profile`} state={{ name: name }}>
                       <Circle size={56} />
-                      <h2>{filter.name}</h2>
-                      <h3>{filter.type}</h3>
+                      <h2>{name}</h2>
+                      <h3>{type}</h3>
                     </Link>
                   )
                 })
