@@ -27,7 +27,9 @@ export default function Home() {
 
   function filteredName() {
     setFilterDate([]);
+
     const filter = profiles.sort((objA, objB) => objB.name.localeCompare(objA.name));
+
     setFilterName(filter)
   }
 
@@ -127,20 +129,7 @@ export default function Home() {
 
         {typeInfoExibition === 'list' && (
           <List>
-            {search.length > 0 ? (
-                filtered.map(filter => {
-                  return (
-                    <Link to={`/profile?name=${filter.name}`}>
-                    <div>
-                      <Circle size={28} />
-                      <h2>{filter.name}</h2>
-                    </div>
-                    <h3>{filter.created}</h3>
-                  </Link>
-                  )
-                })
-            ) : 
-            profiles?.map((profile) => (
+            {filterDate.length > 0 || filterName.length > 0 || search.length > 0 ? '' : profiles.map((profile) => (
               <Link to={`/profile?name=${profile.name}`}>
                 <div>
                   <Circle size={28} />
@@ -149,6 +138,40 @@ export default function Home() {
                 <h3>{profile.created}</h3>
               </Link>
             ))}
+
+            {filterDate && search.length <= 0 ? filterDate.map((profile) => (
+              <Link to={`/profile?name=${profile.name}`}>
+                <div>
+                  <Circle size={28} />
+                  <h2>{profile.name}</h2>
+                </div>
+                <h3>{profile.created}</h3>
+              </Link>
+            )) : ''}
+
+            {filterName && search.length <= 0 ? filterName.map((profile) => (
+              <Link to={`/profile?name=${profile.name}`}>
+                <div>
+                  <Circle size={28} />
+                  <h2>{profile.name}</h2>
+                </div>
+                <h3>{profile.created}</h3>
+              </Link>
+            )) : ''}
+
+            {search.length > 0 ? (
+                filtered.map(filter => {
+                  return (
+                    <Link to={`/profile?name=${filter.name}`}>
+                      <div>
+                        <Circle size={28} />
+                        <h2>{filter.name}</h2>
+                      </div>
+                      <h3>{filter.created}</h3>
+                    </Link>
+                  )
+                })
+            ): ''} 
           </List>
         )}
       </Container>  
