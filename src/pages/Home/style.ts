@@ -75,7 +75,7 @@ export const Favorities = styled.div`
   border-bottom: 1px solid #B9CBD3;
   padding-bottom: 50px;
 
-  h3 {
+  .title-favoritie {
     font-size: 32px;
     font-weight: 700;
     color: #607B99;
@@ -125,9 +125,10 @@ export const Grid = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
   }
 
-  a h2 {
+  h2 {
     font-size: 16px;
     font-weight: 700;
     color: #52636C;
@@ -136,7 +137,7 @@ export const Grid = styled.div`
     margin-top: 20px;
   }
 
-  a h3 {
+  h3 {
     font-size: 12px;
     font-weight: 400;
     color: #738192;
@@ -151,27 +152,34 @@ export const List = styled.div`
 
   margin-top: 50px;
 
-  a {
+  .block-item-list {
     position: relative;
 
     text-decoration: none;
 
     transition: all 0.3s;
-  }
 
-  .line {
+    display: flex;
+    align-items: center;
+
     background-color: #ffffff;
     box-shadow: 0px 2px 12px rgba(96, 123, 153, 0.15);
     border-radius: 7px;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
     padding: 20px 50px;
   }
 
-  a img {
+  a {
+    width: 100%;
+
+    text-decoration: none;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  img {
     position: absolute;
     top: 25px;
     left: -30px;
@@ -183,7 +191,7 @@ export const List = styled.div`
     align-items: center;
   }
 
-  a h2 {
+  h2 {
     font-size: 16px;
     font-weight: 700;
     color: #52636C;
@@ -191,7 +199,7 @@ export const List = styled.div`
     margin-left: 10px;
   }
 
-  a h3 {
+  h3 {
     font-size: 12px;
     font-weight: 400;
     color: #738192;

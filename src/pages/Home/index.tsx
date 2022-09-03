@@ -118,7 +118,7 @@ export default function Home() {
         {typeInfoExibition === 'grid' && (
           <>
           <Favorities>
-            <h3>Favorities</h3>
+            <h2 className='title-favoritie'>Favorities</h2>
             <Grid>
               {profiles
               .filter((item) => item.favorite === true)
@@ -206,63 +206,103 @@ export default function Home() {
         )}
 
         {typeInfoExibition === 'list' && (
+          <>
+          <Favorities>
+            <h2 className='title-favoritie'>Favorities</h2>
+            <List>
+              {profiles
+              .filter((item) => item.favorite === true)
+              .map(({ name, created }) => (
+                <div className='block-item-list'>
+                  <button onClick={() => makeFav(name)}>
+                    <img src={iconStar} alt="" />
+                  </button>
+                  <Link to={`/profile?name=${name}`}>
+                    <div>
+                      <Circle size={28} color={getRandomColor()} />
+                      <h2>{name}</h2>
+                    </div>
+                    <h3>{created}</h3>
+                  </Link>
+                </div>
+              ))}
+            </List>
+          </Favorities>
+
           <List>
-            {filterDate.length > 0 || filterName.length > 0 || search.length > 0 ? '' : profiles.map((profile) => (
-              <Link to={`/profile?name=${profile.name}`}>
-                <img src={iconStarOutline} alt="" />
-                <div className="line">
+            {filterDate.length > 0 || filterName.length > 0 || search.length > 0 ? '' : profiles
+            .filter((item) => item.favorite === false)
+            .map(({ name, created }) => (
+              <div className='block-item-list'>
+                <button onClick={() => makeFav(name)}>
+                  <img src={iconStarOutline} alt="" />
+                </button>
+                <Link to={`/profile?name=${name}`}>
                   <div>
                     <Circle size={28} color={getRandomColor()} />
-                    <h2>{profile.name}</h2>
+                    <h2>{name}</h2>
                   </div>
-                  <h3>{profile.created}</h3>
-                </div>
-              </Link>
+                  <h3>{created}</h3>
+                </Link>
+              </div>
             ))}
 
-            {filterDate && search.length <= 0 ? filterDate.map((profile) => (
-              <Link to={`/profile?name=${profile.name}`}>
-                <img src={iconStarOutline} alt="" />
-                <div className="line">
+            {filterDate && search.length <= 0 ? filterDate
+            .filter((item) => item.favorite === false)
+            .map(({ name, created }) => (
+              <div className='block-item-list'>
+                <button onClick={() => makeFav(name)}>
+                  <img src={iconStarOutline} alt="" />
+                </button>
+                <Link to={`/profile?name=${name}`}>
                   <div>
                     <Circle size={28} color={getRandomColor()} />
-                    <h2>{profile.name}</h2>
+                    <h2>{name}</h2>
                   </div>
-                  <h3>{profile.created}</h3>
-                </div>
-              </Link>
+                  <h3>{created}</h3>
+                </Link>
+              </div>
             )) : ''}
 
-            {filterName && search.length <= 0 ? filterName.map((profile) => (
-              <Link to={`/profile?name=${profile.name}`}>
-                <img src={iconStarOutline} alt="" />
-                <div className="line">
+            {filterName && search.length <= 0 ? filterName
+            .filter((item) => item.favorite === false)
+            .map(({ name, created }) => (
+              <div className='block-item-list'>
+                <button onClick={() => makeFav(name)}>
+                  <img src={iconStarOutline} alt="" />
+                </button>
+                <Link to={`/profile?name=${name}`}>
                   <div>
                     <Circle size={28} color={getRandomColor()} />
-                    <h2>{profile.name}</h2>
+                    <h2>{name}</h2>
                   </div>
-                  <h3>{profile.created}</h3>
-                </div>
-              </Link>
+                  <h3>{created}</h3>
+                </Link>
+              </div>
             )) : ''}
 
             {search.length > 0 ? (
-                filtered.map(filter => {
+                filtered
+                .filter((item) => item.favorite === false)
+                .map(({ name, created }) => {
                   return (
-                    <Link to={`/profile?name=${filter.name}`}>
-                      <img src={iconStarOutline} alt="" />
-                      <div className="line">
+                    <div className='block-item-list'>
+                      <button onClick={() => makeFav(name)}>
+                        <img src={iconStarOutline} alt="" />
+                      </button>
+                      <Link to={`/profile?name=${name}`}>
                         <div>
                           <Circle size={28} color={getRandomColor()} />
-                          <h2>{filter.name}</h2>
+                          <h2>{name}</h2>
                         </div>
-                        <h3>{filter.created}</h3>
-                      </div>
-                    </Link>
+                        <h3>{created}</h3>
+                      </Link>
+                    </div>
                   )
                 })
             ): ''} 
           </List>
+          </>
         )}
       </Container>  
    </>
