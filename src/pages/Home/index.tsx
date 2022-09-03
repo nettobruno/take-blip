@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
 import { SquaresFour, Rows, Plus } from 'phosphor-react';
 import Header from '../../components/Header';
-import { Container, Grid, List, Circle, AddButton } from './style';
+import { Container, Favorities, Grid, List, Circle, AddButton } from './style';
 import api from '../../services/api';
 import { Link } from 'react-router-dom';
 import iconStarOutline from '../../assets/star-outline.png';
+import iconStar from '../../assets/star.png';
 
 interface ItemsData {
   created: string;
   name: string;
   type: string;
+  favorite: boolean;
 }
 
 
@@ -20,12 +22,26 @@ export default function Home() {
   const [filterDate, setFilterDate] = useState<ItemsData[]>([]); 
   const [filterName, setFilterName] = useState<ItemsData[]>([]); 
 
-
   async function getItems() {
     await api.get('bots').then((response) => {
-      setProfiles(response.data);
+      const data = response.data.map((item: any) => {
+        return { ...item, favorite: false };
+      });
+
+      console.log(data);
+
+      setProfiles(data);
     });
   }
+
+  function makeFav(name: string) {
+    let allItems = [...profiles];
+    let itemIndex = allItems.findIndex((item) => item.name === name);
+
+    allItems[itemIndex].favorite = !allItems[itemIndex].favorite;
+    setProfiles(allItems);
+  };
+
 
   function filteredName() {
     setFilterDate([]);
@@ -49,14 +65,15 @@ export default function Home() {
     ? profiles.filter(profile => profile.name.includes(search))
     : [];
 
-    function getRandomColor() {
-      var letters = '0123456789ABCDEF';
-      var color = '#';
-      for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-      }
-      return color;
+
+  function getRandomColor() {
+    let letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
     }
+    return color;
+  }
 
   useEffect(() => {
     getItems();
@@ -99,47 +116,93 @@ export default function Home() {
         </AddButton>
 
         {typeInfoExibition === 'grid' && (
+          <>
+          <Favorities>
+            <h3>Favorities</h3>
+            <Grid>
+              {profiles
+              .filter((item) => item.favorite === true)
+              .map(({ name, type }) => (
+                <div className='block-item'>
+                  <button onClick={() => makeFav(name)}>
+                    <img src={iconStar} alt="" />
+                  </button>
+                  <Link to={`/profile`} state={{ name: name }}>
+                    <Circle size={56} color={getRandomColor()} />
+                    <h2>{name}</h2>
+                    <h3>{type}</h3>
+                  </Link>
+                </div>
+              ))}
+            </Grid>
+          </Favorities>
+
           <Grid>
-            {filterDate.length > 0 || filterName.length > 0 || search.length > 0 ? '' : profiles.map(({ name, type }) => (
-              <Link to={`/profile`} state={{ name: name }}>
-                <img src={iconStarOutline} alt="" />
-                <Circle size={56} color={getRandomColor()} />
-                <h2>{name}</h2>
-                <h3>{type}</h3>
-              </Link>
+            {filterDate.length > 0 || filterName.length > 0 || search.length > 0 ? '' : profiles
+            .filter((item) => item.favorite === false)
+            .map(({ name, type }) => (
+              <div className='block-item'>
+                <button onClick={() => makeFav(name)}>
+                  <img src={iconStarOutline} alt="" />
+                </button>
+                <Link to={`/profile`} state={{ name: name }}>
+                  <Circle size={56} color={getRandomColor()} />
+                  <h2>{name}</h2>
+                  <h3>{type}</h3>
+                </Link>
+              </div>
             ))}
 
-            {filterDate && search.length <= 0 ? filterDate.map(({ name, type }) => (
-              <Link to={`/profile`} state={{ name: name }}>
-                <img src={iconStarOutline} alt="" />
-                <Circle size={56} color={getRandomColor()} />
-                <h2>{name}</h2>
-                <h3>{type}</h3>
-              </Link>
+            {filterDate && search.length <= 0 ? filterDate
+            .filter((item) => item.favorite === false)
+            .map(({ name, type }) => (
+              <div className='block-item'>
+                <button onClick={() => makeFav(name)}>
+                  <img src={iconStarOutline} alt="" />
+                </button>
+                <Link to={`/profile`} state={{ name: name }}>
+                  <Circle size={56} color={getRandomColor()} />
+                  <h2>{name}</h2>
+                  <h3>{type}</h3>
+                </Link>
+              </div>
             )) : ''}
 
-            {filterName && search.length <= 0 ? filterName.map(({ name, type }) => (
-              <Link to={`/profile`} state={{ name: name }}>
-                <img src={iconStarOutline} alt="" />
-                <Circle size={56} color={getRandomColor()} />
-                <h2>{name}</h2>
-                <h3>{type}</h3>
-              </Link>
+            {filterName && search.length <= 0 ? filterName
+            .filter((item) => item.favorite === false)
+            .map(({ name, type }) => (
+              <div className='block-item'>
+                <button onClick={() => makeFav(name)}>
+                  <img src={iconStarOutline} alt="" />
+                </button>
+                <Link to={`/profile`} state={{ name: name }}>
+                  <Circle size={56} color={getRandomColor()} />
+                  <h2>{name}</h2>
+                  <h3>{type}</h3>
+                </Link>
+              </div>
             )) : ''}
 
             {search.length > 0 ? (
-                filtered.map(({ name, type }) => {
+                filtered
+                .filter((item) => item.favorite === false)
+                .map(({ name, type }) => {
                   return (
-                    <Link to={`/profile`} state={{ name: name }}>
-                      <img src={iconStarOutline} alt="" />
-                      <Circle size={56} color={getRandomColor()} />
-                      <h2>{name}</h2>
-                      <h3>{type}</h3>
-                    </Link>
+                    <div className='block-item'>
+                      <button onClick={() => makeFav(name)}>
+                        <img src={iconStarOutline} alt="" />
+                      </button>
+                      <Link to={`/profile`} state={{ name: name }}>
+                        <Circle size={56} color={getRandomColor()} />
+                        <h2>{name}</h2>
+                        <h3>{type}</h3>
+                      </Link>
+                    </div>
                   )
                 })
             ): ''} 
           </Grid>
+          </>
         )}
 
         {typeInfoExibition === 'list' && (
