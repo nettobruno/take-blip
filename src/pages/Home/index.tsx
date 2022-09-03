@@ -4,12 +4,14 @@ import Header from '../../components/Header';
 import { Container, Grid, List, Circle, AddButton } from './style';
 import api from '../../services/api';
 import { Link } from 'react-router-dom';
+import iconStarOutline from '../../assets/star-outline.png';
 
 interface ItemsData {
   created: string;
   name: string;
   type: string;
 }
+
 
 export default function Home() {
   const [typeInfoExibition, setTypeInfoExibition] = useState('grid');
@@ -21,7 +23,8 @@ export default function Home() {
 
   async function getItems() {
     await api.get('bots').then((response) => {
-      setProfiles(response.data);
+      // response.data.map(item => setProfiles({ ...item, favorite: false }));
+      setProfiles(response.data)
     });
   }
 
@@ -91,6 +94,7 @@ export default function Home() {
           <Grid>
             {filterDate.length > 0 || filterName.length > 0 || search.length > 0 ? '' : profiles.map(({ name, type }) => (
               <Link to={`/profile`} state={{ name: name }}>
+                <img src={iconStarOutline} alt="" />
                 <Circle size={56} />
                 <h2>{name}</h2>
                 <h3>{type}</h3>
@@ -99,6 +103,7 @@ export default function Home() {
 
             {filterDate && search.length <= 0 ? filterDate.map(({ name, type }) => (
               <Link to={`/profile`} state={{ name: name }}>
+                <img src={iconStarOutline} alt="" />
                 <Circle size={56} />
                 <h2>{name}</h2>
                 <h3>{type}</h3>
@@ -107,6 +112,7 @@ export default function Home() {
 
             {filterName && search.length <= 0 ? filterName.map(({ name, type }) => (
               <Link to={`/profile`} state={{ name: name }}>
+                <img src={iconStarOutline} alt="" />
                 <Circle size={56} />
                 <h2>{name}</h2>
                 <h3>{type}</h3>
@@ -117,6 +123,7 @@ export default function Home() {
                 filtered.map(({ name, type }) => {
                   return (
                     <Link to={`/profile`} state={{ name: name }}>
+                      <img src={iconStarOutline} alt="" />
                       <Circle size={56} />
                       <h2>{name}</h2>
                       <h3>{type}</h3>
@@ -131,31 +138,40 @@ export default function Home() {
           <List>
             {filterDate.length > 0 || filterName.length > 0 || search.length > 0 ? '' : profiles.map((profile) => (
               <Link to={`/profile?name=${profile.name}`}>
-                <div>
-                  <Circle size={28} />
-                  <h2>{profile.name}</h2>
+                <img src={iconStarOutline} alt="" />
+                <div className="line">
+                  <div>
+                    <Circle size={28} />
+                    <h2>{profile.name}</h2>
+                  </div>
+                  <h3>{profile.created}</h3>
                 </div>
-                <h3>{profile.created}</h3>
               </Link>
             ))}
 
             {filterDate && search.length <= 0 ? filterDate.map((profile) => (
               <Link to={`/profile?name=${profile.name}`}>
-                <div>
-                  <Circle size={28} />
-                  <h2>{profile.name}</h2>
+                <img src={iconStarOutline} alt="" />
+                <div className="line">
+                  <div>
+                    <Circle size={28} />
+                    <h2>{profile.name}</h2>
+                  </div>
+                  <h3>{profile.created}</h3>
                 </div>
-                <h3>{profile.created}</h3>
               </Link>
             )) : ''}
 
             {filterName && search.length <= 0 ? filterName.map((profile) => (
               <Link to={`/profile?name=${profile.name}`}>
-                <div>
-                  <Circle size={28} />
-                  <h2>{profile.name}</h2>
+                <img src={iconStarOutline} alt="" />
+                <div className="line">
+                  <div>
+                    <Circle size={28} />
+                    <h2>{profile.name}</h2>
+                  </div>
+                  <h3>{profile.created}</h3>
                 </div>
-                <h3>{profile.created}</h3>
               </Link>
             )) : ''}
 
@@ -163,11 +179,14 @@ export default function Home() {
                 filtered.map(filter => {
                   return (
                     <Link to={`/profile?name=${filter.name}`}>
-                      <div>
-                        <Circle size={28} />
-                        <h2>{filter.name}</h2>
+                      <img src={iconStarOutline} alt="" />
+                      <div className="line">
+                        <div>
+                          <Circle size={28} />
+                          <h2>{filter.name}</h2>
+                        </div>
+                        <h3>{filter.created}</h3>
                       </div>
-                      <h3>{filter.created}</h3>
                     </Link>
                   )
                 })

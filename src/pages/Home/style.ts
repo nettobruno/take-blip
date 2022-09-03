@@ -79,6 +79,8 @@ export const Grid = styled.div`
   margin-top: 50px;
 
   a {
+    position: relative;
+
     background-color: #ffffff;
     box-shadow: 0px 2px 12px rgba(96, 123, 153, 0.15);
     border-radius: 7px;
@@ -88,11 +90,17 @@ export const Grid = styled.div`
     justify-content: center;
     align-items: center;
 
-    padding: 20px;
+    padding: 50px 10px;
 
     text-decoration: none;
 
     transition: all 0.3s;
+  }
+
+  a img {
+    position: absolute;
+    top: 10px;
+    left: 10px;
   }
 
   a h2 {
@@ -122,6 +130,14 @@ export const List = styled.div`
   margin-top: 50px;
 
   a {
+    position: relative;
+
+    text-decoration: none;
+
+    transition: all 0.3s;
+  }
+
+  .line {
     background-color: #ffffff;
     box-shadow: 0px 2px 12px rgba(96, 123, 153, 0.15);
     border-radius: 7px;
@@ -131,15 +147,17 @@ export const List = styled.div`
     align-items: center;
 
     padding: 20px 50px;
-
-    text-decoration: none;
-
-    transition: all 0.3s;
   }
 
-  a > div {
+  a img {
+    position: absolute;
+    top: 25px;
+    left: -30px;
+  }
+
+  a div:last-of-type {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
   }
 
@@ -182,7 +200,7 @@ export const AddButton = styled.div`
   justify-content: center;
   align-items: center;
 
-  position: absolute;
+  position: fixed;
   bottom: 100px;
   right: 100px;
 
