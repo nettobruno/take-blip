@@ -16,6 +16,7 @@ export default function Home() {
   const [profiles, setProfiles] = useState<ItemsData[]>([]);  
   const [search, setSearch] = useState('')
   const [filterDate, setFilterDate] = useState<ItemsData[]>([]); 
+  const [filterName, setFilterName] = useState<ItemsData[]>([]); 
 
 
   async function getItems() {
@@ -24,7 +25,15 @@ export default function Home() {
     });
   }
 
+  function filteredName() {
+    setFilterDate([]);
+    const filter = profiles.sort((objA, objB) => objB.name.localeCompare(objA.name));
+    setFilterName(filter)
+  }
+
   function filteredDate() {
+    setFilterName([]);
+
     const filter = profiles.sort(
       (objA, objB) => Number(new Date(objB.created)) - Number(new Date(objA.created)),
     );
@@ -57,7 +66,7 @@ export default function Home() {
               value={search} 
             />
 
-            <button className='button-action'>Order by name</button>
+            <button className='button-action' onClick={() => filteredName()}>Order by name</button>
             <button className='button-action' onClick={() => filteredDate()}>Order by creation</button>
 
             <div className='buttons-set-exibition'>
@@ -78,7 +87,7 @@ export default function Home() {
 
         {typeInfoExibition === 'grid' && (
           <Grid>
-            {filterDate.length > 0 || search.length > 0 ? '' : profiles.map((profile) => (
+            {filterDate.length > 0 || filterName.length > 0 || search.length > 0 ? '' : profiles.map((profile) => (
               <Link to={`/profile?name=${profile.name}`}>
                 <Circle size={56} />
                 <h2>{profile.name}</h2>
@@ -87,6 +96,14 @@ export default function Home() {
             ))}
 
             {filterDate && search.length <= 0 ? filterDate.map((profile) => (
+              <Link to={`/profile?name=${profile.name}`}>
+                <Circle size={56} />
+                <h2>{profile.name}</h2>
+                <h3>{profile.type}</h3>
+              </Link>
+            )) : ''}
+
+            {filterName && search.length <= 0 ? filterName.map((profile) => (
               <Link to={`/profile?name=${profile.name}`}>
                 <Circle size={56} />
                 <h2>{profile.name}</h2>
