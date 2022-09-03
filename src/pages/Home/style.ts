@@ -185,7 +185,7 @@ export const Circle = styled.div<Props>`
   width: ${(props) => props.size}px;
   height: ${(props) => props.size}px;
 
-  background-color: #2CC3D5;
+  background-color: ${(props) => props.color};
   border-radius: 100%;
 `;
 

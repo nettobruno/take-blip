@@ -23,8 +23,7 @@ export default function Home() {
 
   async function getItems() {
     await api.get('bots').then((response) => {
-      // response.data.map(item => setProfiles({ ...item, favorite: false }));
-      setProfiles(response.data)
+      setProfiles(response.data);
     });
   }
 
@@ -49,6 +48,15 @@ export default function Home() {
   const filtered = search.length > 0
     ? profiles.filter(profile => profile.name.includes(search))
     : [];
+
+    function getRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
 
   useEffect(() => {
     getItems();
@@ -95,7 +103,7 @@ export default function Home() {
             {filterDate.length > 0 || filterName.length > 0 || search.length > 0 ? '' : profiles.map(({ name, type }) => (
               <Link to={`/profile`} state={{ name: name }}>
                 <img src={iconStarOutline} alt="" />
-                <Circle size={56} />
+                <Circle size={56} color={getRandomColor()} />
                 <h2>{name}</h2>
                 <h3>{type}</h3>
               </Link>
@@ -104,7 +112,7 @@ export default function Home() {
             {filterDate && search.length <= 0 ? filterDate.map(({ name, type }) => (
               <Link to={`/profile`} state={{ name: name }}>
                 <img src={iconStarOutline} alt="" />
-                <Circle size={56} />
+                <Circle size={56} color={getRandomColor()} />
                 <h2>{name}</h2>
                 <h3>{type}</h3>
               </Link>
@@ -113,7 +121,7 @@ export default function Home() {
             {filterName && search.length <= 0 ? filterName.map(({ name, type }) => (
               <Link to={`/profile`} state={{ name: name }}>
                 <img src={iconStarOutline} alt="" />
-                <Circle size={56} />
+                <Circle size={56} color={getRandomColor()} />
                 <h2>{name}</h2>
                 <h3>{type}</h3>
               </Link>
@@ -124,7 +132,7 @@ export default function Home() {
                   return (
                     <Link to={`/profile`} state={{ name: name }}>
                       <img src={iconStarOutline} alt="" />
-                      <Circle size={56} />
+                      <Circle size={56} color={getRandomColor()} />
                       <h2>{name}</h2>
                       <h3>{type}</h3>
                     </Link>
@@ -141,7 +149,7 @@ export default function Home() {
                 <img src={iconStarOutline} alt="" />
                 <div className="line">
                   <div>
-                    <Circle size={28} />
+                    <Circle size={28} color={getRandomColor()} />
                     <h2>{profile.name}</h2>
                   </div>
                   <h3>{profile.created}</h3>
@@ -154,7 +162,7 @@ export default function Home() {
                 <img src={iconStarOutline} alt="" />
                 <div className="line">
                   <div>
-                    <Circle size={28} />
+                    <Circle size={28} color={getRandomColor()} />
                     <h2>{profile.name}</h2>
                   </div>
                   <h3>{profile.created}</h3>
@@ -167,7 +175,7 @@ export default function Home() {
                 <img src={iconStarOutline} alt="" />
                 <div className="line">
                   <div>
-                    <Circle size={28} />
+                    <Circle size={28} color={getRandomColor()} />
                     <h2>{profile.name}</h2>
                   </div>
                   <h3>{profile.created}</h3>
@@ -182,7 +190,7 @@ export default function Home() {
                       <img src={iconStarOutline} alt="" />
                       <div className="line">
                         <div>
-                          <Circle size={28} />
+                          <Circle size={28} color={getRandomColor()} />
                           <h2>{filter.name}</h2>
                         </div>
                         <h3>{filter.created}</h3>
