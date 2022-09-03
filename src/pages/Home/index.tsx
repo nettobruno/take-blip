@@ -120,7 +120,7 @@ export default function Home() {
           <Favorities>
             <h2 className='title-favoritie'>Favorities</h2>
             <Grid>
-              {profiles
+              {search.length <= 0 ? profiles
               .filter((item) => item.favorite === true)
               .map(({ name, type }) => (
                 <div className='block-item'>
@@ -133,7 +133,26 @@ export default function Home() {
                     <h3>{type}</h3>
                   </Link>
                 </div>
-              ))}
+              )): ''}
+
+              {search.length > 0 ? (
+                filtered
+                .filter((item) => item.favorite === true)
+                .map(({ name, type }) => {
+                  return (
+                    <div className='block-item'>
+                      <button onClick={() => makeFav(name)}>
+                        <img src={iconStar} alt="" />
+                      </button>
+                      <Link to={`/profile`} state={{ name: name }}>
+                        <Circle size={56} color={getRandomColor()} />
+                        <h2>{name}</h2>
+                        <h3>{type}</h3>
+                      </Link>
+                    </div>
+                  )
+                })
+              ): ''} 
             </Grid>
           </Favorities>
 
@@ -210,7 +229,7 @@ export default function Home() {
           <Favorities>
             <h2 className='title-favoritie'>Favorities</h2>
             <List>
-              {profiles
+              {search.length <= 0 ? profiles
               .filter((item) => item.favorite === true)
               .map(({ name, created }) => (
                 <div className='block-item-list'>
@@ -225,7 +244,28 @@ export default function Home() {
                     <h3>{created}</h3>
                   </Link>
                 </div>
-              ))}
+              )): ''}
+
+              {search.length > 0 ? (
+                filtered
+                .filter((item) => item.favorite === true)
+                .map(({ name, created }) => {
+                  return (
+                    <div className='block-item-list'>
+                      <button onClick={() => makeFav(name)}>
+                        <img src={iconStar} alt="" />
+                      </button>
+                      <Link to={`/profile?name=${name}`}>
+                        <div>
+                          <Circle size={28} color={getRandomColor()} />
+                          <h2>{name}</h2>
+                        </div>
+                        <h3>{created}</h3>
+                      </Link>
+                    </div>
+                  )
+                })
+              ): ''} 
             </List>
           </Favorities>
 
