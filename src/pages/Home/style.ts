@@ -27,11 +27,6 @@ export const Container = styled.div`
     color: #56616E;
   }
 
-  form {
-    display: flex;
-    align-items: center;
-  }
-
   input {
     border: 1px solid #D2DFE6;
     border-radius: 8px;
@@ -48,7 +43,7 @@ export const Container = styled.div`
     }
   }
 
-  form button {
+  .button-action {
     background: #2CC3D5;
     border-radius: 8px;
     color: #F8FBFB;
@@ -58,15 +53,15 @@ export const Container = styled.div`
     padding: 10px;
   }
 
-  form button:first-of-type {
+  .button-action:first-of-type {
     margin-right: 5px;
   }
 
-  form button:last-of-type {
+  .button-action:last-of-type {
     margin-right: 10px;
   }
 
-  form button:hover {
+  .button-action:hover {
     background-color: #218F9C;
   }
 
