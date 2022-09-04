@@ -23,7 +23,7 @@ export default function Home() {
   const [filterName, setFilterName] = useState<ItemsData[]>([]); 
 
   async function getItems() {
-    await api.get('bots').then((response) => {
+    await api.get('/bots').then((response) => {
       const data = response.data.map((item: any) => {
         return { ...item, favorite: false };
       });
@@ -83,7 +83,7 @@ export default function Home() {
    <>
       <Header />
 
-      <Container>
+      <Container data-testid="home-page">
         <div className="inline">
           <h1>My chatbots</h1>
 

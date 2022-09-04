@@ -6,37 +6,12 @@ import iconMessageReceived from '../../assets/message-received.png'
 import iconMessageSend from '../../assets/message-send.png'
 import iconUserActive from '../../assets/user-active.png'
 
-// interface ItemsData {
-//   created: string;
-//   name: string;
-//   type: string;
-// }
-
-// interface LocationState {
-//   name: {
-//     name: string;
-//   };
-// }
-
 export default function Profile() {
-  // const location = useLocation();
-  // const [profiles, setProfiles] = useState<ItemsData[]>([]);  
-
-  // useEffect(() => {
-  //   const { name }  = location.state as LocationState;
-
-  //   api.get(`/${name}/details`).then((response) => {
-  //     console.log(response.data);
-  //     setProfiles(response.data);
-  //   });
-  //   console.log(name)
-  // }, []);
-
   return (
    <>
       <Header />
 
-      <Container>
+      <Container data-testid="profile-page">
         <header>
           <div className="user">
             <div className="circle">
