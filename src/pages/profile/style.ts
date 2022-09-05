@@ -29,13 +29,11 @@ export const Container = styled.div`
     align-items: center;
   }
 
-  header .circle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  header img {
     width: 56px;
     height: 56px;
+    object-fit: cover;
+
 
     background-color: #DEE8EC;
     border-radius: 28px;

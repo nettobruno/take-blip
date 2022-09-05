@@ -1,5 +1,6 @@
 
-import { ChatCircle } from 'phosphor-react'
+import { useState, useEffect } from 'react'
+import api from '../../services/api'
 import illustration from '../../assets/illustration.png'
 import iconMessageReceived from '../../assets/message-received.png'
 import iconMessageSend from '../../assets/message-send.png'
@@ -7,7 +8,59 @@ import iconUserActive from '../../assets/user-active.png'
 import Header from '../../components/Header'
 import { Container, Grid, Circle, Footer } from './style'
 
+interface ProfileProps {
+  analytics: {
+    user: {
+      total: number;
+      actived: number;
+    },
+    message: {
+      received: number;
+      sent: number;
+    }
+  };
+  created: string;
+  culture: string;
+  description: string;
+  image: string;
+  name: string;
+  shortName: string;
+  type: string;
+  updated: string;
+}
+
 export default function Profile() {
+  const [profile, setProfile] = useState<ProfileProps>({
+    analytics: {
+      user: {
+        total: 0,
+        actived: 0,
+      },
+      message: {
+        received: 0,
+        sent: 0,
+      }
+    },
+    created: '',
+    culture: '',
+    description: '',
+    image: '',
+    name: '',
+    shortName: '',
+    type: '',
+    updated: '',
+  });  
+
+  async function getProfile() {
+    await api.get('eleven/details').then((response) => {
+      setProfile(response.data)
+    });
+  }
+
+  useEffect(() => {
+    getProfile();
+  }, []);
+
   return (
    <>
       <Header />
@@ -15,17 +68,18 @@ export default function Profile() {
       <Container data-testid='profile-page'>
         <header>
           <div className='user'>
-            <div className='circle'>
-              <ChatCircle size={32} color='#B9CBD3' />
+            <div>
+              <img src={profile.image} alt="" />
             </div>
 
+           
             <hgroup>
-              <h1>Botname</h1>
-              <h4>id: botname</h4>
-            </hgroup>
+              <h1>{profile.name}</h1>
+              <h4>id: {profile.shortName}</h4>
+           </hgroup>
           </div>
 
-          <p>Created at 11/09/2019</p>
+          <p>Created at {new Date(profile.created).toLocaleDateString()}</p>
         </header>
 
         <Grid>
@@ -47,7 +101,7 @@ export default function Profile() {
             </Circle>
 
             <hgroup>
-              <h2>1.000</h2>
+              <h2>{profile.analytics.user.actived}</h2>
               <h3>Usuários ativos</h3>
             </hgroup>
           </div>
@@ -58,7 +112,7 @@ export default function Profile() {
             </Circle>
 
             <hgroup>
-              <h2>1.000</h2>
+              <h2>{profile.analytics.message.received}</h2>
               <h3>Mensagens recebidas</h3>
             </hgroup>
           </div>
@@ -69,7 +123,7 @@ export default function Profile() {
             </Circle>
 
             <hgroup>
-              <h2>1.000</h2>
+              <h2>{profile.analytics.message.sent}</h2>
               <h3>Mensagens enviadas</h3>
             </hgroup>
           </div>
