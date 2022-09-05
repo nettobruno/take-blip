@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-interface Props {
-  size: number;
-}
-
 export const Container = styled.div`
   max-width: 1600px;
   width: 100%;
@@ -145,59 +141,6 @@ export const Grid = styled.div`
 
   margin-top: 50px;
 
-  .block-item {
-    position: relative;
-
-    background-color: #ffffff;
-    box-shadow: 0px 2px 12px rgba(96, 123, 153, 0.15);
-    border-radius: 7px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    padding: 50px 10px;
-
-    transition: all 0.3s;
-  }
-
-  .block-item:hover {
-    transform: scale(1.1);
-  }
-
-  button {
-    cursor: pointer;
-    background-color: transparent;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-  }
-
-  a {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-  }
-
-  h2 {
-    font-size: 16px;
-    font-weight: 700;
-    color: #52636C;
-    text-decoration: none;
-
-    margin-top: 20px;
-  }
-
-  h3 {
-    font-size: 12px;
-    font-weight: 400;
-    color: #738192;
-    text-decoration: none;
-  }
-
   @media(max-width: 1100px) {
     grid-template-columns: 1fr 1fr;
   }
@@ -215,72 +158,6 @@ export const List = styled.div`
   grid-gap: 20px;
 
   margin-top: 50px;
-
-  .block-item-list {
-    position: relative;
-
-    text-decoration: none;
-
-    transition: all 0.3s;
-
-    display: flex;
-    align-items: center;
-
-    background-color: #ffffff;
-    box-shadow: 0px 2px 12px rgba(96, 123, 153, 0.15);
-    border-radius: 7px;
-
-    padding: 20px 50px;
-  }
-
-  a {
-    width: 100%;
-
-    text-decoration: none;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  img {
-    position: absolute;
-    top: 25px;
-    left: -30px;
-  }
-
-  a div:last-of-type {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  h2 {
-    font-size: 16px;
-    font-weight: 700;
-    color: #52636C;
-
-    margin-left: 10px;
-  }
-
-  h3 {
-    font-size: 12px;
-    font-weight: 400;
-    color: #738192;
-  }
-
-  a:hover {
-    text-decoration: underline;
-    text-decoration-color: #738192;
-  }
-`;
-
-export const Circle = styled.div<Props>`
-  width: ${(props) => props.size}px;
-  height: ${(props) => props.size}px;
-
-  background-color: ${(props) => props.color};
-  border-radius: 100%;
 `;
 
 export const AddButton = styled.div`

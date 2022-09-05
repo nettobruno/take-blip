@@ -1,5 +1,5 @@
-import { Container } from './style';
 import logoTakeBlip from '../../assets/logo.png'
+import { Container } from './style';
 
 export default function Header() {
   return (
