@@ -7,7 +7,7 @@ interface Props {
 export const Container = styled.div`
   max-width: 1600px;
   width: 100%;
-  margin: 0 auto;
+  margin: 20px auto;
 
   .inline {
     display: flex;
@@ -68,6 +68,60 @@ export const Container = styled.div`
   .buttons-set-exibition button {
     cursor: pointer;
     background-color: transparent;
+  }
+
+  @media(max-width: 1650px) {
+    max-width: 1400px;
+  }
+
+  @media(max-width: 1450px) {
+    max-width: 1200px;
+  }
+
+  @media(max-width: 1250px) {
+    max-width: 1000px;
+  }
+
+  @media(max-width: 1050px) {
+    max-width: 800px;
+  }
+
+  @media(max-width: 850px) {
+    max-width: 600px;
+
+    .inline,
+    .actions { 
+      flex-direction: column;
+      width: 100%;
+      padding: 10px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      margin-bottom: 10px;
+      margin-right: 0px;
+      width: 100%;
+    }
+
+    .button-action {
+      margin-bottom: 10px;
+      width: 100%;
+    }
+
+    .button-action:first-of-type {
+      margin-right: 0px;
+    }
+
+    .button-action:last-of-type {
+      margin-right: 0px;
+    }
+  }
+
+  @media(max-width: 650px) {
+    max-width: 400px;
   }
 `;
 
@@ -142,6 +196,16 @@ export const Grid = styled.div`
     font-weight: 400;
     color: #738192;
     text-decoration: none;
+  }
+
+  @media(max-width: 1100px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media(max-width: 600px) {
+    grid-template-columns: 1fr;
+
+    margin: 10px;
   }
 `;
 
@@ -234,9 +298,16 @@ export const AddButton = styled.div`
   bottom: 100px;
   right: 100px;
 
+  z-index: 1;
+
   cursor: pointer;
 
   :hover {
     background-color: #218F9C;
+  }
+
+  @media(max-width: 1250px) {
+    bottom: 20px;
+    right: 20px;
   }
 `;

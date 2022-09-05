@@ -60,6 +60,25 @@ export const Container = styled.div`
     font-weight: 400;
     color: #8CA0B3;
   }
+  @media(max-width: 1650px) {
+    max-width: 1400px;
+  }
+
+  @media(max-width: 1450px) {
+    max-width: 1200px;
+  }
+
+  @media(max-width: 1250px) {
+    max-width: 1000px;
+  }
+
+  @media(max-width: 1050px) {
+    max-width: 800px;
+  }
+
+  @media(max-width: 850px) {
+    max-width: 600px;
+  }
 `;
 
 export const Grid = styled.div`
@@ -187,7 +206,7 @@ export const Grid = styled.div`
     .item3,
     .item4,
     .item5 {
-      margin: 0 10px;
+      margin: 0 30px;
       padding: 10px;
 
       display: flex;

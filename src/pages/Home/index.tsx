@@ -28,8 +28,6 @@ export default function Home() {
         return { ...item, favorite: false };
       });
 
-      console.log(data);
-
       setProfiles(data);
     });
   }
