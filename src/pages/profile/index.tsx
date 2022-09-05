@@ -1,21 +1,22 @@
-import Header from '../../components/Header';
-import { ChatCircle } from 'phosphor-react';
-import { Container, Grid, Circle, Footer } from './style';
+
+import { ChatCircle } from 'phosphor-react'
 import illustration from '../../assets/illustration.png'
 import iconMessageReceived from '../../assets/message-received.png'
 import iconMessageSend from '../../assets/message-send.png'
 import iconUserActive from '../../assets/user-active.png'
+import Header from '../../components/Header'
+import { Container, Grid, Circle, Footer } from './style'
 
 export default function Profile() {
   return (
    <>
       <Header />
 
-      <Container data-testid="profile-page">
+      <Container data-testid='profile-page'>
         <header>
-          <div className="user">
-            <div className="circle">
-              <ChatCircle size={32} color="#B9CBD3" />
+          <div className='user'>
+            <div className='circle'>
+              <ChatCircle size={32} color='#B9CBD3' />
             </div>
 
             <hgroup>
@@ -42,7 +43,7 @@ export default function Profile() {
 
           <div className='item2'>
             <Circle color='lightBlue'>
-              <img src={iconUserActive} alt="" />
+              <img src={iconUserActive} alt='User active icon' />
             </Circle>
 
             <hgroup>
@@ -53,7 +54,7 @@ export default function Profile() {
           
           <div className='item3'>
             <Circle color='green'>
-              <img src={iconMessageReceived} alt="" />
+              <img src={iconMessageReceived} alt='Message received icon' />
             </Circle>
 
             <hgroup>
@@ -64,7 +65,7 @@ export default function Profile() {
 
           <div className='item4'>
             <Circle color='darkBlue'>
-              <img src={iconMessageSend} alt="" />
+              <img src={iconMessageSend} alt='Message sent icon' />
             </Circle>
 
             <hgroup>

@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
-import { SquaresFour, Rows, Plus } from 'phosphor-react';
-import Header from '../../components/Header';
-import { Container, Favorities, Grid, List, Circle, AddButton } from './style';
-import api from '../../services/api';
-import { Link } from 'react-router-dom';
-import iconStarOutline from '../../assets/star-outline.png';
-import iconStar from '../../assets/star.png';
+import { useState, useEffect } from 'react'
+import { SquaresFour, Rows, Plus } from 'phosphor-react'
+import { Link } from 'react-router-dom'
+import api from '../../services/api'
+import iconStarOutline from '../../assets/star-outline.png'
+import iconStar from '../../assets/star.png'
+import Header from '../../components/Header'
+import { Container, Favorities, Grid, List, Circle, AddButton } from './style'
+
 
 interface ItemsData {
   created: string;
@@ -81,8 +82,8 @@ export default function Home() {
    <>
       <Header />
 
-      <Container data-testid="home-page">
-        <div className="inline">
+      <Container data-testid='home-page'>
+        <div className='inline'>
           <h1>My chatbots</h1>
 
           <div className='actions'>
@@ -110,7 +111,7 @@ export default function Home() {
         </div>
 
         <AddButton>
-          <Plus size={20} color="#F8FBFB" />
+          <Plus size={20} color='#F8FBFB' />
         </AddButton>
 
         {typeInfoExibition === 'grid' && (
@@ -140,7 +141,7 @@ export default function Home() {
                   return (
                     <div className='block-item'>
                       <button onClick={() => makeFav(name)}>
-                        <img src={iconStar} alt="" />
+                        <img src={iconStar} alt='Icon Star' />
                       </button>
                       <Link to={`/profile`} state={{ name: name }}>
                         <Circle size={56} color={getRandomColor()} />
@@ -160,7 +161,7 @@ export default function Home() {
             .map(({ name, type }) => (
               <div className='block-item'>
                 <button onClick={() => makeFav(name)}>
-                  <img src={iconStarOutline} alt="" />
+                  <img src={iconStarOutline} alt='Icon Start Outline' />
                 </button>
                 <Link to={`/profile`} state={{ name: name }}>
                   <Circle size={56} color={getRandomColor()} />
@@ -175,7 +176,7 @@ export default function Home() {
             .map(({ name, type }) => (
               <div className='block-item'>
                 <button onClick={() => makeFav(name)}>
-                  <img src={iconStarOutline} alt="" />
+                  <img src={iconStarOutline} alt='Icon Start Outline' />
                 </button>
                 <Link to={`/profile`} state={{ name: name }}>
                   <Circle size={56} color={getRandomColor()} />
@@ -190,7 +191,7 @@ export default function Home() {
             .map(({ name, type }) => (
               <div className='block-item'>
                 <button onClick={() => makeFav(name)}>
-                  <img src={iconStarOutline} alt="" />
+                  <img src={iconStarOutline} alt='Icon Start Outline' />
                 </button>
                 <Link to={`/profile`} state={{ name: name }}>
                   <Circle size={56} color={getRandomColor()} />
@@ -207,7 +208,7 @@ export default function Home() {
                   return (
                     <div className='block-item'>
                       <button onClick={() => makeFav(name)}>
-                        <img src={iconStarOutline} alt="" />
+                        <img src={iconStarOutline} alt='Icon Start Outline' />
                       </button>
                       <Link to={`/profile`} state={{ name: name }}>
                         <Circle size={56} color={getRandomColor()} />
@@ -232,7 +233,7 @@ export default function Home() {
               .map(({ name, created }) => (
                 <div className='block-item-list'>
                   <button onClick={() => makeFav(name)}>
-                    <img src={iconStar} alt="" />
+                    <img src={iconStar} alt='Icon Start' />
                   </button>
                   <Link to={`/profile?name=${name}`}>
                     <div>
@@ -251,7 +252,7 @@ export default function Home() {
                   return (
                     <div className='block-item-list'>
                       <button onClick={() => makeFav(name)}>
-                        <img src={iconStar} alt="" />
+                        <img src={iconStar} alt='Icon Start' />
                       </button>
                       <Link to={`/profile?name=${name}`}>
                         <div>
@@ -273,7 +274,7 @@ export default function Home() {
             .map(({ name, created }) => (
               <div className='block-item-list'>
                 <button onClick={() => makeFav(name)}>
-                  <img src={iconStarOutline} alt="" />
+                  <img src={iconStarOutline} alt='Icon Start Outline' />
                 </button>
                 <Link to={`/profile?name=${name}`}>
                   <div>
@@ -290,7 +291,7 @@ export default function Home() {
             .map(({ name, created }) => (
               <div className='block-item-list'>
                 <button onClick={() => makeFav(name)}>
-                  <img src={iconStarOutline} alt="" />
+                  <img src={iconStarOutline} alt='Icon Start Outline' />
                 </button>
                 <Link to={`/profile?name=${name}`}>
                   <div>
@@ -307,7 +308,7 @@ export default function Home() {
             .map(({ name, created }) => (
               <div className='block-item-list'>
                 <button onClick={() => makeFav(name)}>
-                  <img src={iconStarOutline} alt="" />
+                  <img src={iconStarOutline} alt='Icon Start Outline' />
                 </button>
                 <Link to={`/profile?name=${name}`}>
                   <div>
@@ -326,7 +327,7 @@ export default function Home() {
                   return (
                     <div className='block-item-list'>
                       <button onClick={() => makeFav(name)}>
-                        <img src={iconStarOutline} alt="" />
+                        <img src={iconStarOutline} alt='Icon Start Outline' />
                       </button>
                       <Link to={`/profile?name=${name}`}>
                         <div>
